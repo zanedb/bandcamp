@@ -7,7 +7,7 @@ def getStreamUrl(html):
 def getTitle(html):
   return re.findall(r'\"title\"\w*:\w*\"(.*?)\"', html.text)[0]
 
-def downloadFile(stream_url):
+def downloadFile(stream_url, file_name):
   mp3_file = requests.get(stream_url)
   if mp3_file.status_code == 200:
     with open(file_name, 'wb') as f:
@@ -22,4 +22,4 @@ print('URL: '+stream_url)
 print('Title: '+title)
 print('Downloading as "'+title+'.mp3"..')
 file_name = title+'.mp3'
-downloadFile(stream_url)
+downloadFile(stream_url, file_name)
